@@ -1,0 +1,40 @@
+{
+  "name": "CRO",
+  "version": "1.0.0",
+  "description": "Project for non-profit organization",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brigmanlp/CRO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brigmanlp/CRO/issues"
+  },
+  "homepage": "https://github.com/brigmanlp/CRO#readme",
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.23.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "history": "^4.6.1",
+    "react": "^15.5.4",
+    "react-document-title": "^2.0.3",
+    "react-dom": "^15.5.4",
+    "react-router": "^4.0.0-alpha.6",
+    "webpack": "^2.4.1"
+  },
+  "devDependencies": {
+    "webpack-dev-middleware": "^1.10.2"
+  }
+}
