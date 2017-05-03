@@ -6,14 +6,33 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
-
 mongoose.Promise = Promise;
 
-//Require Schemas
-var Article = require('./models/Article');
+//Authentication Additional Dependencies
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var exphbs = require('express-handlebars');
+var expressValidator = require('express-validator');
+var flash = require('connect-flash');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongo = require('mongodb');
 
 // Create Instance of Express
 var app = express();
+
+//Require Schemas
+
+
+//Require Routes
+var routes = require('./routes/auth');
+var users = require('./routes/users');
+
+// View Engine
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.set('view engine', 'handlebars');
 
 // Set an initial port.
 var PORT = process.env.PORT || 5000;
@@ -21,20 +40,70 @@ var PORT = process.env.PORT || 5000;
 // Run Morgan for Logging
 app.use(logger("dev"));
 
+// BodyParser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(cookieParser());
 
-app.use(express.static("./public"));
+// Express Session
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Express Validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
+
+//Non static routes
+app.use('/training', routes);
+app.use('/users', users);
+
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // MongoDB Configuration configuration
 //Database configuration with mongoose
+//need to change name here
 var dbURI = 'mongodb://localhost/nytarticles';
 
-
 if (process.env.NODE_ENV === 'production') {
-    dbURI= "mongodb://heroku_xfj05g0m:ujk02k8p0qu0mjd9id7bbf9k45@ds141098.mlab.com:41098/heroku_xfj05g0m";
+  //need to add mLab URI here
+  dbURI= "mongodb://heroku_xfj05g0m:ujk02k8p0qu0mjd9id7bbf9k45@ds141098.mlab.com:41098/heroku_xfj05g0m";
 }
 /*
 if (process.env.MONGODB_URI) {
@@ -62,75 +131,15 @@ app.get("/", function(req, res) {
 });
 */
 
+// Listener
+app.listen(PORT, function() {
+  console.log("App listening on PORT: " + PORT);
+});
+
 app.get("/", function(req, res) {
   res.render(index.html);
 });
 
-// This is the route used to retrieve the saved articles and place them in the Saved Article Panel
-app.get("/api/retrieve", function(req, res) {
-  console.log('in server, /retrieve');
-  Article.find({})
-  .exec(function(err, docs) {
-    if (err) {
-      console.log(err);
-      res.send(err);
-    }
-    else {
-      console.log('in api/retrieve - docs',docs);
-      res.send(docs);
-    }
-  });
-});
-
-//the route to save the article to db
-app.post('/api/saved', function(req, res){
-  // save the article object which has the article title,
-  // url and publish date
-  console.log('\nin app.post/api/saved - req.body', req.body);
-  var newArticle = new Article(req.body.article);
-  console.log('\nnewArticle',newArticle)
-    newArticle.save(function (err, doc) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(doc);
-      }
-    });
-});
-
-// Route to delete an article from saved list
-app.delete('/api/delete/:title', function(req, res){
-  Article.find({"title": req.params.title})
-  .remove(function (response) {
-    console.log('removed article with title ',req.params.title);
-    res.send(response);
-  })
-});
-
-app.get("/api/search/:term/:start/:end", function (req, res) {
-  var endpoint = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=1b8ad75b08d7499ab6862418e9cc2c3a&",
-    q = req.params.term,
-    start = req.params.start,
-    end = req.params.end;
-  console.log('\nreq.params.term',req.params.term);
-  console.log('\nreq.params.start',req.params.start);
-  console.log('\nreq.params.end',req.params.end);
-  var url = endpoint + "q=" + q + "&begin_date=" + start + "&end_date=" + end;
-  console.log('\napi/search url = ', url);
-  request(url, function (err, response, body) {
-    if (err) {
-      console.log(err);
-      res.send(err);
-    } else {
-      body = JSON.parse(body);
-      console.log("parsed body ", body)
-      res.json(body);
-    }
-
-  })
-});
-
-// Listener
-app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+app.get("/training", function(req, res) {
+  res.render("auth");
 });
