@@ -137,7 +137,7 @@ app.listen(PORT, function() {
 });
 
 app.get("/", function(req, res) {
-  res.render(index.html);
+  res.render("index.html");
 });
 
 app.get("/training", function(req, res) {
