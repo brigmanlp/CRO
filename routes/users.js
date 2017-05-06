@@ -86,13 +86,23 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/users/login',failureFlash: true}),
-  function(req, res) {
-    res.redirect('/');
-  });
+	function(req, res, next) {
+		passport.authenticate('local', function(err, user, info) {
+			if (err) { return next(err); }
+			if (!user) { return res.redirect('/login'); }
+			req.logIn(user, function(err) {
+				if (err) { return next(err); }
+				req.session.isAuth = true;
+				return res.redirect('/training');
+			});
+		})(req, res, next)
+
+	})
+
 
 router.get('/logout', function(req, res){
 	req.logout();
+	req.session.isAuth = false;
 
 	req.flash('success_msg', 'You are logged out');
 

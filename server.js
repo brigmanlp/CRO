@@ -50,8 +50,9 @@ app.use(cookieParser());
 // Express Session
 app.use(session({
     secret: 'secret',
+    cookie: { path: "/" },
     saveUninitialized: true,
-    resave: true
+    resave: false
 }));
 
 // Passport init
@@ -96,8 +97,7 @@ app.use('/users', users);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// MongoDB Configuration configuration
-//Database configuration with mongoose
+//MongoDB Configuration 
 //need to change name here
 var dbURI = 'mongodb://localhost/nytarticles';
 
@@ -139,7 +139,12 @@ app.listen(PORT, function() {
 app.get("/", function(req, res) {
   res.render("index.html");
 });
+//calling on auth.js to run logic for /training route
+app.use(routes);
 
-app.get("/training", function(req, res) {
-  res.render("auth");
-});
+app.get('/logout', function(req, res){
+  req.logout();
+  req.session.isAuth = false;
+  //add a session cookie here for admins only
+  res.redirect('/');
+});  

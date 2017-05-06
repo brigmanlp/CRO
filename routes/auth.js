@@ -8,7 +8,8 @@ router.get('/training', ensureAuthenticated, function(req, res){
 
 function ensureAuthenticated(req, res, next){
 	console.log("is it getting here");
-	if(req.isAuthenticated()){
+	console.log("TEST2", req.session.isAuth)
+	if(req.session.isAuth && req.isAuthenticated()){
 		//Session cookies needs to be set here and training module should only be accessible if the session cookie exists
 		return next();
 	} else {
