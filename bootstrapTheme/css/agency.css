@@ -12,7 +12,7 @@ body {
 
 p {
   font-size: 14px;
-  line-height: 1.75;
+  line-height: 1.25;
 }
 p.large {
   font-size: 16px;
@@ -346,7 +346,7 @@ section h3.section-subheading {
   margin: 0 auto;
   background-color: white;
   text-align: center;
-  padding: 25px;
+  padding: 15px;
 }
 #about-us .about-us-item .about-us-caption h4 {
   text-transform: none;
@@ -532,6 +532,9 @@ section h3.section-subheading {
   .timeline > li.timeline-inverted > .timeline-panel {
     padding: 0 100px 20px 20px;
   }
+}
+.parkLocations{
+  padding: 0 10px 0px 10px;
 }
 .newRef-member {
   text-align: center;
