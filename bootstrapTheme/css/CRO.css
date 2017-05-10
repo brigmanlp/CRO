@@ -148,14 +148,13 @@ fieldset[disabled] .btn-xl.active {
   border-color: transparent;
 }
 .navbar-custom .navbar-brand {
-  color: #c9ff00;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+ margin-top: -20px;
 }
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus,
 .navbar-custom .navbar-brand:active,
 .navbar-custom .navbar-brand.active {
-  color: #c9ff00;
+  opacity: 75%;
 }
 .navbar-custom .navbar-collapse {
   border-color: rgba(255, 255, 255, 0.02);
@@ -560,7 +559,7 @@ aside.clients img {
   height:120px;
 }
 
-/* Map */
+/* Map
 
 .map {
     height: 400px;
@@ -578,13 +577,12 @@ aside.clients img {
 
 section#fieldmap {
   background-color: #fff;
-  height: 400px;
   background-position: center;
   background-repeat: no-repeat;
 }
 section#fieldmap .section-heading {
   color: #222222;
-}
+}*/
 
 section#calendar {
   background-color: #222222;
@@ -596,7 +594,13 @@ section#calendar {
 section#calendar .section-heading {
   color: #fff;
 }
+/* logo section */  
 
+.svgLogo {
+  height: 400px;
+  margin-top: -20px;
+  margin-left: -70px;
+}
 
 /* contact form */
 
