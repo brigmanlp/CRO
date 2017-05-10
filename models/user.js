@@ -15,6 +15,14 @@ var UserSchema = mongoose.Schema({
 	},
 	name: {
 		type: String
+	},
+	admin: {
+		type: Boolean,
+		default: false
+	},
+	isverified: {
+		type: Boolean,
+		default:false
 	}
 });
 
@@ -34,8 +42,20 @@ module.exports.getUserByUsername = function(username, callback){
 	User.findOne(query, callback);
 }
 
+module.exports.getUsersByVerify = function(callback){
+	var query = {isverified: false};
+	User.find(query, callback);
+}
+
 module.exports.getUserById = function(id, callback){
 	User.findById(id, callback);
+}
+
+module.exports.updateUserById = function(id){
+	var query = {_id: id}
+	User.update(query, { $set: {isVerified: true}}).exec(
+		console.log("updated record")
+	);
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback){

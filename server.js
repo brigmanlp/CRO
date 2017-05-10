@@ -28,6 +28,7 @@ var app = express();
 //Require Routes
 var routes = require('./routes/auth');
 var users = require('./routes/users');
+var verify = require('./routes/verify');
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -99,7 +100,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //MongoDB Configuration 
 //need to change name here
-var dbURI = 'mongodb://localhost/nytarticles';
+//declares the name of the database
+var dbURI = 'mongodb://localhost/cro';
 
 if (process.env.NODE_ENV === 'production') {
   //need to add mLab URI here
@@ -135,6 +137,8 @@ app.get("/", function(req, res) {
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
+
+//Routes
 
 app.get("/", function(req, res) {
   res.render("index.html");

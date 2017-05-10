@@ -85,24 +85,27 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-router.post('/login',
+router.post('/login', 
 	function(req, res, next) {
 		passport.authenticate('local', function(err, user, info) {
 			if (err) { return next(err); }
-			if (!user) { return res.redirect('/login'); }
+			if (!user) { return res.redirect('/'); }
 			req.logIn(user, function(err) {
 				if (err) { return next(err); }
 				req.session.isAuth = true;
+				if (user.admin) {
+					req.session.isAdmin = true;
+				}
 				return res.redirect('/training');
 			});
 		})(req, res, next)
-
-	})
-
+});
 
 router.get('/logout', function(req, res){
 	req.logout();
 	req.session.isAuth = false;
+	req.session.isAdmin = false;
+
 
 	req.flash('success_msg', 'You are logged out');
 

@@ -1,0 +1,8 @@
+{{!--HK--}}
+<h2 class="page-header">Admin</h2>
+<p>Welcome Admin</p>  
+<div>
+    {{#each newUsers}}
+        <p>{{this.name}} {{this.email}}</p><button class="verifyBtn" data-id={{id}}>Verify</button>
+    {{/each}}
+</div>
