@@ -28,6 +28,7 @@ var app = express();
 //Require Routes
 var routes = require('./routes/auth');
 var users = require('./routes/users');
+var verify = require('./routes/verify');
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -50,8 +51,9 @@ app.use(cookieParser());
 // Express Session
 app.use(session({
     secret: 'secret',
+    cookie: { path: "/" },
     saveUninitialized: true,
-    resave: true
+    resave: false
 }));
 
 // Passport init
@@ -96,10 +98,10 @@ app.use('/users', users);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// MongoDB Configuration configuration
-//Database configuration with mongoose
+//MongoDB Configuration 
 //need to change name here
-var dbURI = 'mongodb://localhost/nytarticles';
+//declares the name of the database
+var dbURI = 'mongodb://localhost/cro';
 
 if (process.env.NODE_ENV === 'production') {
   //need to add mLab URI here
@@ -136,10 +138,20 @@ app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
 
+//Routes
+
 app.get("/", function(req, res) {
   res.render("index.html");
 });
+//calling on auth.js to run logic for /training route
+app.use(routes);
 
-app.get("/training", function(req, res) {
-  res.render("auth");
-});
+app.get('/logout', function(req, res){
+  req.logout();
+  req.session.isAuth = false;
+  req.session.isAdmin = false;
+  req.session.isVerified = false;
+
+  //add a session cookie here for admins only
+  res.redirect('/');
+});  

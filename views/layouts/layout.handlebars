@@ -2,9 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>LoginApp</title>
+	<title>Training Dashboard</title>
 	<link rel="stylesheet" href="/css/bootstrap.css" />
 	<link rel="stylesheet" href="/css/style.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/logic.js"></script> 
 </head>
 <body>
 	<div class="container">
@@ -13,14 +16,16 @@
           <ul class="nav nav-pills pull-right">
             {{#if user}}
               <li role="presentation"><a href="/">Dashboard</a></li>
+              <li role="presentation"><a href="/admin">Admin Only</a></li>
               <li role="presentation"><a href="/users/logout">Logout</a></li>
             {{else}}
               <li role="presentation"><a href="/users/login">Login</a></li>
               <li role="presentation"><a href="/users/register">Register</a></li>
             {{/if}}
+            
           </ul>
         </nav>
-        <h3 class="text-muted">LoginApp</h3>
+        <h3 class="text-muted">CRO</h3>
       </div>
 
 
@@ -40,12 +45,10 @@
           
           {{{body}}}
         </div>
-
-        
       </div>
 
       <footer class="footer">
-        <p>&copy; 2015 LoginApp, Inc.</p>
+        <p>&copy; 2017 Charlotte Referree Organization</p>
       </footer>
 
     </div> <!-- /container -->
