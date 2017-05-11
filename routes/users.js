@@ -93,8 +93,11 @@ router.post('/login',
 			req.logIn(user, function(err) {
 				if (err) { return next(err); }
 				req.session.isAuth = true;
-				if (user.admin) {
+				if (user.admin === true) {
 					req.session.isAdmin = true;
+				}
+				if (user.isverified === true) {
+					req.session.isVerified = true;
 				}
 				return res.redirect('/training');
 			});
@@ -105,6 +108,7 @@ router.get('/logout', function(req, res){
 	req.logout();
 	req.session.isAuth = false;
 	req.session.isAdmin = false;
+	req.session.isVerified = false;
 
 
 	req.flash('success_msg', 'You are logged out');

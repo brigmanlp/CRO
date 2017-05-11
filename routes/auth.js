@@ -4,6 +4,9 @@ var User = require('../models/user.js')
 
 // Get Homepage
 router.get('/training', ensureAuthenticated, function(req, res){
+	console.log("Admin: " + req.session.isAdmin);
+	console.log("Auth: " + req.session.isAuth);
+	console.log("Verified: " + req.session.isVerified);
 	res.render('auth');
 });
 
@@ -25,10 +28,12 @@ router.get('/admin', ensureAdmin, function(req, res){
 	});
 });
 
-router.post('/verify/:id', ensureAdmin, function(req, res){
+router.post('/verify/:id', function(req, res){
     var id = req.params.id;
-    User.findByIdAndUpdate(id, { $set: { isVerified: true }}, function (err, User) {
-        if (err) return handleError(err);
+	console.log('id: ' + id)
+    User.findByIdAndUpdate({_id: id}, { $set: { isverified: true }}, function (err, User) {
+		console.log('In Function find and update \n id: ' + id + '\n User: ' + User)
+		if (err) return handleError(err);
         res.send(User);
     });
 });

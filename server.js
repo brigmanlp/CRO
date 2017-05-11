@@ -149,6 +149,9 @@ app.use(routes);
 app.get('/logout', function(req, res){
   req.logout();
   req.session.isAuth = false;
+  req.session.isAdmin = false;
+  req.session.isVerified = false;
+
   //add a session cookie here for admins only
   res.redirect('/');
 });  
