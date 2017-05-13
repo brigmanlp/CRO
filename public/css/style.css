@@ -17,3 +17,20 @@ h3.panel-title{
 .verifyBtn {
   display: inline;
 }
+
+#authNav {
+  background-color: #000000;
+  margin-bottom: 10px;
+}
+.authsvgLogo {
+  height: 150px;
+  margin-top: -30px;
+  margin-left: -40px;
+}
+
+.heading {
+  margin-top: 150px;
+  background-color: #000000;
+}
+
+

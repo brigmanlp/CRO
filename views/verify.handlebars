@@ -1,7 +1,9 @@
 {{!--HK--}}
-<h2 class="page-header">Admin</h2>
-<p>Welcome Admin</p>  
+<header>
+    <h2 class="heading">Admin</h2>
+</header>
 <div>
+    <p>Use the verify button next to each newly registered profile to allow them access to CRO training portal.</p>  
     {{#each newUsers}}
         <p>{{this.name}} {{this.email}}</p><button class="verifyBtn" data-id={{id}}>Verify</button>
     {{/each}}
