@@ -2,9 +2,23 @@
 <header>
     <h2 class="heading">Admin</h2>
 </header>
-<div>
-    <p>Use the verify button next to each newly registered profile to allow them access to CRO training portal.</p>  
-    {{#each newUsers}}
-        <p>{{this.name}} {{this.email}}</p><button class="verifyBtn" data-id={{id}}>Verify</button>
-    {{/each}}
+<div class="row">
+   <div class="col-md-6 panel">
+        <h3>Verify New Users</h3>
+        <p>Use the verify button next to each newly registered profile to allow them access to CRO training portal.</p>  
+        {{#each newUsers}}
+        <div>
+            <p>{{this.name}} {{this.email}}</p><button class="verifyBtn" data-id={{id}}>Verify</button>
+        </div>
+        {{/each}}
+    </div>
+   <div class="col-md-6 panel">
+        <h3>Existing Users</h3>
+        <p>Use the X button next to any member to disable the users login. Click Make Admin to give the user Administrator Permissions.</p>  
+        {{#each verifiedUser}}
+        <div>
+            <p>{{this.name}} {{this.email}}</p><button class="adminBtn" data-id={{verifiedUser.id}}>Make Admin</button><button class="deleteBtn" data-id={{verifiedUser.id}}>X</button>
+        </div>
+        {{/each}}
+    </div>
 </div>
