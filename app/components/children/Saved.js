@@ -14,10 +14,9 @@ var Saved = React.createClass({
   render: function() {
     return (
       <div className="row">
-        <div className="col-md-12">
-          <div className="panel panel-default text-center">
+          <div className="text-center">
             <div className="panel-heading">
-              <h3>Saved Articles</h3>
+              <h3>Saved Videos</h3>
             </div>
 
             <div className="panel-body text-center">
@@ -34,7 +33,6 @@ var Saved = React.createClass({
               }, this)}
             </div>
           </div>
-        </div>
       </div>
     );
   }
