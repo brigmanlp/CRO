@@ -16,57 +16,53 @@ var Main = React.createClass({
 
   // initial state variables
   getInitialState: function() {
-    return {
-      term: "",
-      start:"",
-      end:"",
-      title:"",
-      date: "",
-      url:"",
-      results: [],
-      saved: [],
-      article: []
-    };
+    return {saved:[]};
   },
 
   // This function allows children to update the parent.
-  setParams: function(term,start,end) {
-    this.setState({ term: term });
-    this.setState({ start: start });
-    this.setState({ end: end });
+  setParams: function(title, category, url) {
+    this.setState({ title: title });
+    this.setState({ category: category });
+    this.setState({ url: url });
   },
 
-  // The moment the page renders, get the Articles
+  // // The moment the page renders, get the Articles
+  // componentDidMount: function() {
+  //   console.log('in componentDidMount');
+  //   //get data from model
+  //   helpers.getSaved().then(function(saved) {
+  //     if (!isEqual(saved,this.state.saved)) {
+  //       this.setState({ saved: saved.data });
+  //     }
+  //   }.bind(this));
+  // },
+
+  // The moment the page renders, get the Videos
   componentDidMount: function() {
     console.log('in componentDidMount');
     //get data from model
     helpers.getSaved().then(function(saved) {
-      if (!isEqual(saved,this.state.saved)) {
-        this.setState({ saved: saved.data });
-      }
+      console.log("in helpers.getSaved")
+      this.setState({ saved: saved.data });
+      console.log(saved)
     }.bind(this));
   },
 
-  // If the component changes (i.e. if a search is entered)...
-  componentDidUpdate: function() {
-    console.log('in componentDidUpdate')
-    // Run the query for the articles
-    helpers.runQuery(this.state.term, this.state.start, this.state.end).then(function(results) {
-      if (!isEqual(results, this.state.results)) {
-        this.setState({results: results});//results from API
-        return;
-      }
-    }.bind(this));
-  },
-
-  setSaved: function(saved) {
-    this.state.saved.push(saved);
-  },
-
-  saveItem: function(newArticle) {
-    helpers.postArticle(newArticle).then(function (response) {
-    });
-  },
+  // // If the component changes (i.e. if a search is entered)...
+  // componentDidUpdate: function() {
+  //   console.log('in componentDidUpdate')
+  //   // Run the query for the articles
+  //   helpers.runQuery(this.state.term, this.state.start, this.state.end).then(function(results) {
+  //     if (!isEqual(results, this.state.results)) {
+  //       this.setState({results: results});//results from API
+  //       return;
+  //     }
+  //   }.bind(this));
+  // },
+  // saveItem: function(newVideo) {
+  //   helpers.postVideo(newVideo).then(function (response) {
+  //   });
+  // },
 
   deleteItem: function(title) {
     helpers.deleteSaved(title).then(function (response) {
@@ -85,14 +81,14 @@ var Main = React.createClass({
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <div className="col-md-2">
-              </div>
-              <div className="col-md-8">
+              <div className="col-md-6">
                 <Saved
                   deleteItem={this.deleteItem}
                   saved={this.state.saved} />
               </div>
-              <div className="col-md-2">
+              <div className="col-md-6">
+                <Form
+                  setParams={this.setParams} />
               </div>
             </div>
           </div>

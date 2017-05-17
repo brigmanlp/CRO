@@ -1,16 +1,16 @@
 var React = require("react");
+var helpers = require("../utils/helpers.js");
 
 var Form = React.createClass({
-
-  getInitialState: function() {
-    return { title: "Title", category:"Category", url:"URL" };
-  },
-
   handleSubmit: function(event) {
     event.preventDefault();
-    // Set the parent to have the search term
-    console.log('in handleSubmit',this.state.title,this.state.category, this.state.url);
-    this.props.setParams(this.state.title,this.state.category, this.state.url);
+    var newVideo = {
+      title: $("#title").val(),
+      category: $("#title").val(),
+      url: $("#title").val(),
+    }
+    console.log(newVideo)
+    helpers.postVideo(newVideo)
   },
 
   render: function() {
@@ -28,7 +28,7 @@ var Form = React.createClass({
               <label htmlFor="title">
                 <strong>Title:</strong>
               </label>
-              <input value={this.state.title} type="text"
+              <input type="text"
                 className="form-control text-center"
                 id="title"
                 // onChange={this.handleChangeTerm}
@@ -38,7 +38,7 @@ var Form = React.createClass({
 
               <div className="form-group">
                 <label htmlFor="category"><strong>Category:</strong></label>
-                <input value={this.state.category} type="text" 
+                <input type="text" 
                 className="form-control text-center" 
                 id="category"
                 // onChange={this.handleChangeStart}
@@ -46,7 +46,7 @@ var Form = React.createClass({
               </div>
               <div className="form-group">
                 <label htmlFor="url"><strong>URL:</strong></label>
-                <input value={this.state.url} type="text" 
+                <input type="text" 
                 className="form-control text-center" 
                 id="url"
                 // onChange={this.handleChangeStart}

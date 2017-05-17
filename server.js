@@ -23,7 +23,7 @@ var mongo = require('mongodb');
 var app = express();
 
 //Require Schemas
-
+var Video = require('./models/video');
 
 //Require Routes
 var routes = require('./routes/auth');
@@ -140,6 +140,22 @@ app.get("/", function(req, res) {
 });
 //calling on auth.js to run logic for /training route
 app.use(routes);
+
+// This is the route used to retrieve the saved articles and place them in the Saved Article Panel
+app.get("/api/retrieve", function(req, res) {
+  console.log('in server, /retrieve');
+  Video.find({})
+  .exec(function(err, docs) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    }
+    else {
+      console.log('in api/retrieve - docs',docs);
+      res.send(docs);
+    }
+  });
+});
 
 app.get('/logout', function(req, res){
   req.logout();
