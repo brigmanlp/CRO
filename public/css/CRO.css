@@ -223,8 +223,9 @@ fieldset[disabled] .btn-xl.active {
     background-color: #222222;
     padding: 10px 0;
   }
-  .navbar-custom.affix .navbar-brand {
-    font-size: 1.5em;
+  .navbar-custom.affix .lrgLogo {
+    height: 4.5em;
+    margin-left: 100px;
   }
 }
 header {
@@ -559,32 +560,6 @@ aside.clients img {
   margin: 50px auto;
 }
 
-
-/* Map
-
-.map {
-    height: 400px;
-}
-
-@media(max-width:768px) {
-    .map {
-        height: 100%;
-    }
-}
-
-.map iframe {
-    pointer-events: none;
-}
-
-section#fieldmap {
-  background-color: #fff;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-section#fieldmap .section-heading {
-  color: #222222;
-}*/
-
 section#calendar {
   background-color: #222222;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -600,9 +575,9 @@ section#calendar .section-heading {
 .lrgLogo {
   height: 400px;
   /*margin-top: -20px;*/
-  margin-left: -150px;
+  margin-left: -100px;
 }
-
+  
 /* contact form */
 
 section#contact {
