@@ -170,6 +170,7 @@ fieldset[disabled] .btn-xl.active {
 .bs-callout-danger{
   color: #c9ff00;
 }
+
 .navbar-custom .navbar-toggle:hover,
 .navbar-custom .navbar-toggle:focus {
   background-color: #c9ff00;
@@ -555,9 +556,6 @@ aside.clients img {
   margin: 50px auto;
 }
 
-.logo{
-  height:120px;
-}
 
 /* Map
 
@@ -596,10 +594,10 @@ section#calendar .section-heading {
 }
 /* logo section */  
 
-.svgLogo {
+.lrgLogo {
   height: 400px;
-  margin-top: -20px;
-  margin-left: -70px;
+  /*margin-top: -20px;*/
+  margin-left: -150px;
 }
 
 /* contact form */
