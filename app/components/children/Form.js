@@ -3,7 +3,7 @@ var React = require("react");
 var Form = React.createClass({
 
   getInitialState: function() {
-    return { term: "", start:"", end:"" };
+    return { title: "Title", category:"Category", url:"URL" };
   },
 
   handleSubmit: function(event) {
