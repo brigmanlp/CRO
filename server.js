@@ -7,6 +7,9 @@ var mongoose = require("mongoose");
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
 mongoose.Promise = Promise;
+//Contact form email plugin
+var nodemailer = require("nodemailer");
+
 
 //Authentication Additional Dependencies
 var path = require('path');
@@ -139,8 +142,10 @@ app.listen(PORT, function() {
 });
 
 //Routes
-
 app.get("/", function(req, res) {
+  res.render("index.html");
+});
+app.get("/contact", function(req, res) {
   res.render("index.html");
 });
 //calling on auth.js to run logic for /training route
