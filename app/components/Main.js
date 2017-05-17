@@ -16,7 +16,12 @@ var Main = React.createClass({
 
   // initial state variables
   getInitialState: function() {
-    return {saved:[]};
+    return {
+      title:"",
+      category:"",
+      url:"",
+      saved:[]
+    };
   },
 
   // This function allows children to update the parent.
