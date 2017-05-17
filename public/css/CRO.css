@@ -9,6 +9,9 @@ body {
 .text-primary {
   color: #c9ff00;
 }
+.values{
+  margin-top: 20px;
+}
 
 p {
   font-size: 14px;
