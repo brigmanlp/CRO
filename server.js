@@ -29,6 +29,7 @@ var app = express();
 var routes = require('./routes/auth');
 var users = require('./routes/users');
 var verify = require('./routes/verify');
+var verify = require('./routes/videos');
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
