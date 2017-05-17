@@ -36,9 +36,9 @@ module.exports.createUser = function(newUser, callback){
 	    });
 	});
 }
-module.exports.getMemberList = function(username, callback){
+module.exports.getMemberList = function(callback){
 	var query = {isverified: true};
-	User.find(callback);
+	User.find(query, callback);
 }
 module.exports.getUserByUsername = function(username, callback){
 	var query = {username: username};
