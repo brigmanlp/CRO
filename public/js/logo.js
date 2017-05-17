@@ -6,7 +6,7 @@ logoSize = function () {
     var imgWidth = newImage.width;
 
     // distance over which zoom effect takes place
-    var maxScrollDistance = 650;
+    var maxScrollDistance = 200;
 
     // set to window height if that is smaller
     maxScrollDistance = Math.min(maxScrollDistance, $(window).height());
