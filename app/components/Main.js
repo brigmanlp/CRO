@@ -39,6 +39,7 @@ var Main = React.createClass({
   // The moment the page renders, get the Articles
   componentDidMount: function() {
     console.log('in componentDidMount');
+    //get data from model
     helpers.getSaved().then(function(saved) {
       if (!isEqual(saved,this.state.saved)) {
         this.setState({ saved: saved.data });
@@ -76,8 +77,9 @@ var Main = React.createClass({
     return (
       <div>
         <div className="jumbotron">
-          <h2 className="text-center">New York Times Article Search</h2>
-          <h3 className="text-center">Search and save articles</h3>
+          <h2 className="text-center">Welcome to the Training Area</h2>
+          <h3 className="text-center">Click on any of the links below to take you to the training content.</h3>
+          <h3 className="text-center">- CRO</h3>
         </div>
 
         <div className="container">
@@ -86,14 +88,6 @@ var Main = React.createClass({
               <div className="col-md-2">
               </div>
               <div className="col-md-8">
-                <Form setParams={this.setParams} />
-                <Results
-                  results={this.state.results}
-                  title={this.state.title}
-                  date={this.state.date}
-                  url={this.state.url}
-                  setSaved={this.setSaved}
-                  saveItem={this.saveItem} />
                 <Saved
                   deleteItem={this.deleteItem}
                   saved={this.state.saved} />
