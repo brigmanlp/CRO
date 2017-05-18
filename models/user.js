@@ -46,7 +46,7 @@ module.exports.getUserByUsername = function(username, callback){
 }
 
 module.exports.getUsersByVerify = function(callback){
-	var query = {isverified: false};
+	var query = {};
 	User.find(query, callback);
 }
 

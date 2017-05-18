@@ -3,23 +3,27 @@
     <h2 class="heading">Admin</h2>
 </header>
 <div class="row">
-   <div class="col-md-6 panel">
-        <h3>Existing Users</h3>
+   <div class="col-md-6 panel lgDiv">
+        <h3>All Members</h3>
         <p>Use the X button next to any member to disable the users login. Click Make Admin to give the user Administrator Permissions.</p>  
-        {{#each verifiedUser}}
-        <div>
-            <p>{{this.name}} {{this.email}}</p><button class="adminBtn" data-id={{this.id}}>Make Admin</button><button class="deleteBtn" data-id={{this.id}}>X</button>
-        </div>
-        {{/each}}
+            {{#each newUsers}}
+                {{#if this.isverified}}
+                    <div class="usersDiv">
+                        <button class="adminBtn btn btn-primary btn-sm" data-id={{this.id}}>Make Admin</button><button class="deleteBtn adminBtn btn btn-primary btn-sm" data-id={{this.id}}>X</button><p class="newUser">{{this.name}} {{this.email}}</p>
+                    </div>
+                {{/if}}
+            {{/each}}
     </div>   
     <div class="col-md-6 panel">
         <h3>Verify New Users</h3>
         <p>Use the verify button next to each newly registered profile to allow them access to CRO training portal.</p>  
-        {{#each newUsers}}
-        <div class="verifyDiv">
-            <button class="btn btn-primary btn-sm" data-id={{this.id}}>Verify</button><span><p class="newUser">{{this.name}} {{this.email}}</p></span>
-        </div>
-        {{/each}}
+            {{#each newUsers}}
+                {{#unless this.isverified}}
+                    <div class="verifyDiv usersDiv">
+                        <button class="btn btn-primary btn-sm" data-id={{this.id}}>Verify</button><span><p class="newUser">{{this.name}} {{this.email}}</p></span>
+                    </div>
+                {{/unless}}
+            {{/each}}
     </div>
 </div>
 <div id="app"></div>
