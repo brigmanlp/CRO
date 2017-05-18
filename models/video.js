@@ -29,7 +29,7 @@ module.exports.getVideos = function(callback){
 // 	Video.findOne(query, callback);
 // }
 
-// module.exports.getVideoById = function(id, callback){
+// module.exports.deleteVideoById = function(id, callback){
 // 	Video.findById(id, callback);
 // }
 
