@@ -9,7 +9,7 @@
             {{#each newUsers}}
                 {{#if this.isverified}}
                     <div class="usersDiv">
-                        <button class="adminBtn btn btn-primary btn-sm" data-id={{this.id}}>Make Admin</button><button class="deleteBtn adminBtn btn btn-primary btn-sm" data-id={{this.id}}>X</button><p class="newUser">{{this.name}} {{this.email}}</p>
+                        <button class="adminBtn btn btn-primary btn-sm" data-id={{this.id}}>Make Admin</button><button class="deleteUserBtn adminBtn btn btn-primary btn-sm" data-id={{this.id}}>X</button><p class="newUser">{{this.name}} {{this.email}}</p>
                     </div>
                 {{/if}}
             {{/each}}
@@ -20,7 +20,7 @@
             {{#each newUsers}}
                 {{#unless this.isverified}}
                     <div class="verifyDiv usersDiv">
-                        <button class="btn btn-primary btn-sm" data-id={{this.id}}>Verify</button><span><p class="newUser">{{this.name}} {{this.email}}</p></span>
+                        <button class="verifyBtn btn btn-primary btn-sm" data-id={{this.id}}>Verify</button><span><p class="newUser">{{this.name}} {{this.email}}</p></span>
                     </div>
                 {{/unless}}
             {{/each}}

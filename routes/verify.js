@@ -21,7 +21,23 @@ router.post('/verify/:id', function(req, res){
     console.log("id: " + id)
     User.findByIdAndUpdate(id, { $set: { isVerified: true }}, function (err, User) {
         if (err) return handleError(err);
-        res.send(User);
+        res.redirect('admin');
+    });
+});
+router.post('/makeAdmin/:id', function(req, res){
+    var id = req.params.id;
+    console.log("id: " + id)
+    User.findByIdAndUpdate(id, { $set: { isAdmin: true }}, function (err, User) {
+        if (err) return handleError(err);
+        res.redirect('admin');
+    });
+});
+router.post('/deleteUser/:id', function(req, res){
+    var id = req.params.id;
+    console.log("id: " + id)
+    User.findOneAndRemove({ "_id": id }, function (err, User) {
+        if (err) return handleError(err);
+        res.redirect('admin');
     });
 });
 
