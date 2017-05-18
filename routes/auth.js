@@ -26,12 +26,16 @@ function ensureAuthenticated(req, res, next){
 	}
 }
 router.get('/admin', ensureAdmin, function(req, res){
+
 	User.getUsersByVerify((err, docs)=>{
 		if (err) {console.log(err)};
 		var newUsers = docs;
-		console.log(newUsers);
-		res.render('verify', {newUsers: newUsers, id: newUsers.id});
+		res.render('admin', {newUsers: newUsers});
 	});
+	// User.getMemberList((err, docs)=>{
+	// 	if (err){console.log(err)};
+	// 	memberList = docs;
+	// });
 });
 
 router.post('/verify/:id', function(req, res){
