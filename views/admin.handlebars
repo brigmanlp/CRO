@@ -16,8 +16,8 @@
         <h3>Verify New Users</h3>
         <p>Use the verify button next to each newly registered profile to allow them access to CRO training portal.</p>  
         {{#each newUsers}}
-        <div>
-            <p>{{this.name}} {{this.email}}</p><button class="verifyBtn" data-id={{this.id}}>Verify</button>
+        <div class="verifyDiv">
+            <button class="btn btn-primary btn-sm" data-id={{this.id}}>Verify</button><span><p class="newUser">{{this.name}} {{this.email}}</p></span>
         </div>
         {{/each}}
     </div>
