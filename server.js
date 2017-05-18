@@ -7,9 +7,8 @@ var mongoose = require("mongoose");
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
 mongoose.Promise = Promise;
-//Contact form email plugin
+//Contact form email dependencies
 var nodemailer = require("nodemailer");
-
 
 //Authentication Additional Dependencies
 var path = require('path');
@@ -24,6 +23,16 @@ var mongo = require('mongodb');
 
 // Create Instance of Express
 var app = express();
+
+//Configure SMTP Server details, this is a mail server responsible for sending email.
+var smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+        user: "",
+        pass: ""
+    }
+});
 
 //Require Schemas
 
@@ -145,9 +154,25 @@ app.listen(PORT, function() {
 app.get("/", function(req, res) {
   res.render("index.html");
 });
-app.get("/contact", function(req, res) {
-  res.render("index.html");
+//Route for sending contact form information
+app.get('/send',function(req,res){
+    var mailOptions={
+        to : req.query.to,
+        subject : req.query.subject,
+        text : req.query.text
+    }
+    console.log(mailOptions);
+    smtpTransport.sendMail(mailOptions, function(error, response){
+     if(error){
+            console.log(error);
+        res.end("error");
+     }else{
+            console.log("Message sent: " + response.message);
+        res.end("sent");
+         }
+    });
 });
+
 //calling on auth.js to run logic for /training route
 app.use(routes);
 
