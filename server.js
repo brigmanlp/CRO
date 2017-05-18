@@ -95,6 +95,7 @@ app.use(function (req, res, next) {
 app.use('/training', routes);
 app.use('/users', users);
 
+
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -143,7 +144,6 @@ app.use(routes);
 
 // This is the route used to retrieve the videos
 app.get("/api/retrieve", function(req, res) {
-  console.log('in server, /retrieve');
   Video.find({})
   .exec(function(err, docs) {
     if (err) {
@@ -151,7 +151,6 @@ app.get("/api/retrieve", function(req, res) {
       res.send(err);
     }
     else {
-      console.log('in api/retrieve - docs',docs);
       res.send(docs);
     }
   });
