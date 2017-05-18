@@ -25,7 +25,7 @@ var helpers = {
 
   postVideo: function(newVideo){
     console.log('Added Video:', newVideo);
-    return axios.post('/api/saveVid', {video: [{title: newVideo.title, category: newVideo.category, url: newVideo.url}]})
+    return axios.post('/api/saveVid', {video: newVideo})
       .then(function(response){
         console.log("helpers.postVideo axios response ", response._id);
         return response._id;

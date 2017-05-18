@@ -9,7 +9,6 @@ var Form = React.createClass({
       category: $("#title").val(),
       url: $("#title").val(),
     }
-    console.log(newVideo)
     helpers.postVideo(newVideo)
   },
 
