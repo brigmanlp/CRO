@@ -2,6 +2,25 @@
 <header>
     <h2 class="heading">Dashboard</h2>
 </header>
-    <p>Welcome to your dashboard</p>  
+<div>
+    <div class="jumbotron">
+        <h2 class="text-center">Welcome to the Training Area</h2>
+        <h3 class="text-center">Click on any of the links below to take you to the training content.</h3>
+        <h3 class="text-center">- CRO</h3>
+    </div>
 
-<div id="app"></div>
+    <div class="container">
+    <div class="row">
+        <div class="text-center">
+            <div class="panel-heading">
+            <h3>Saved Videos</h3>
+            </div>
+
+            <div class="panel-body text-center">
+                <div data-id={{video.id}} class="well text-left">
+                    <a href={{video.url}} target="blank"><h4>{{video.title}}</h4></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

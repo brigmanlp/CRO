@@ -6,8 +6,8 @@ var Form = React.createClass({
     event.preventDefault();
     var newVideo = {
       title: $("#title").val(),
-      category: $("#title").val(),
-      url: $("#title").val(),
+      category: $("#category").val(),
+      url: $("#url").val(),
     }
     helpers.postVideo(newVideo)
   },
@@ -51,7 +51,7 @@ var Form = React.createClass({
                 // onChange={this.handleChangeStart}
                 />
               </div>
-              <button onClick={this.handleSubmit} type="submit" className="btn btn-primary btn-md">Search</button>
+              <button onClick={this.handleSubmit} type="submit" className="btn btn-primary btn-md">Add Video</button>
           </form>
         </div>
       </div>

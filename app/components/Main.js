@@ -6,7 +6,8 @@ var isEqual = require("lodash.isequal");
 // include all of the sub-components
 var Form = require("./children/Form");
 var Saved = require("./children/Saved");
-var Results = require("./children/Results");
+var Member = require("./children/Member");
+var Newuser = require("./children/Newuser");
 
 // Helper for making AJAX requests to the NYT API
 var helpers = require("./utils/helpers");
@@ -76,13 +77,6 @@ var Main = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <div className="jumbotron">
-          <h2 className="text-center">Welcome to the Training Area</h2>
-          <h3 className="text-center">Click on any of the links below to take you to the training content.</h3>
-          <h3 className="text-center">- CRO</h3>
-        </div>
-
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -98,7 +92,6 @@ var Main = React.createClass({
             </div>
           </div>
         </div>
-      </div>
     );
   }
 });

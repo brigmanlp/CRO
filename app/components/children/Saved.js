@@ -9,6 +9,7 @@ var Saved = React.createClass({
     var title = selectedParent.firstChild.innerHTML;
     this.props.deleteItem(title);
     selectedParent.parentNode.removeChild(selectedParent);
+    window.reload();
   },
 
   render: function() {
@@ -25,7 +26,7 @@ var Saved = React.createClass({
                 return (
                   <div id={i} key={i} className="well text-left">
                     
-                    <a href={video.url} target="blank"><h4>{video.title}</h4></a>
+                    <a href={video.url} target="_blank"><h4>{video.title}</h4></a>
                     <button onClick={this.handleDelete} className="btn btn-danger btn-sm">Delete</button>
                   </div>
                 );
