@@ -32,8 +32,8 @@ var helpers = {
       })
   },
 
-  deleteSaved: function(title) {
-    return axios.delete('/api/delete/'+ title);
+  deleteSaved: function(id) {
+    return axios.delete('/api/delete/'+ id);
   }
 }
 
