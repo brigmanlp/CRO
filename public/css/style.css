@@ -33,4 +33,16 @@ h3.panel-title{
   background-color: #000000;
 }
 
+.verifyDiv, .videoDiv{
+  padding: 5px;
+}
 
+.newUser {
+  display:inline;
+  padding: 5px;
+}
+
+.videoLink {
+  display:inline;
+  padding: 5px;
+}
