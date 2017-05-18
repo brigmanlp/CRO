@@ -3,12 +3,17 @@ var router = express.Router();
 var User = require('../models/user.js')
 
 router.get('/admin', ensureAdmin, function(req, res){
+	var newUsers;
+	var memberList = [{name: "hannah", email:"test@test.com",id:1}]
 	User.getUsersByVerify((err, docs)=>{
 		if (err) {console.log(err)};
-		var newUsers = docs;
-		console.log(newUsers);
-		res.render('verify', {newUsers: newUsers, id: newUsers.id});
+		newUsers = docs;
 	});
+	User.getMemberList((err, docs)=>{
+		if (err){console.log(err)};
+		memberList = docs;
+	});
+	res.render('members', {verfiedUser: memberList});
 });
 
 router.post('/verify/:id', function(req, res){

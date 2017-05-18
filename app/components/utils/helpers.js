@@ -2,18 +2,18 @@ var axios = require("axios");
 
 var helpers = {
 
-  runQuery: function(term, start, end){
-    var term = term.trim();
-    var start = start.trim() + "0101";
-    var end = end.trim() + "1231";
+  // runQuery: function(term, start, end){
+  //   var term = term.trim();
+  //   var start = start.trim() + "0101";
+  //   var end = end.trim() + "1231";
 
-    console.log("\nin runQuery",term,start,end);
-    return axios.get('/api/search/' + term + '/' + start + '/' + end )
-    .then(function(response){
-      console.log("\nAxios Response from NYT query", response.data.response.docs);
-      return response.data.response.docs;
-    })
-  },
+  //   console.log("\nin runQuery",term,start,end);
+  //   return axios.get('/api/search/' + term + '/' + start + '/' + end )
+  //   .then(function(response){
+  //     console.log("\nAxios Response from NYT query", response.data.response.docs);
+  //     return response.data.response.docs;
+  //   })
+  // },
 
   getSaved: function(){
     return axios.get('/api/retrieve')
@@ -23,11 +23,11 @@ var helpers = {
       })
   },
 
-  postArticle: function(newArticle){
-    console.log('in helpers.postArticle - newArticle',newArticle);
-    return axios.post('/api/saved', {article:newArticle})
+  postVideo: function(newVideo){
+    console.log('Added Video:', newVideo);
+    return axios.post('/api/saveVid', {video: newVideo})
       .then(function(response){
-        console.log("helpers.postArticle axios response ", response._id);
+        console.log("helpers.postVideo axios response ", response._id);
         return response._id;
       })
   },

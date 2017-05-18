@@ -23,12 +23,13 @@ var mongo = require('mongodb');
 var app = express();
 
 //Require Schemas
-
+var Video = require('./models/video');
 
 //Require Routes
 var routes = require('./routes/auth');
 var users = require('./routes/users');
 var verify = require('./routes/verify');
+// var videos = require('./routes/videos');
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -127,12 +128,6 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
-/* Alternate way to render / root route
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
-*/
-
 // Listener
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
@@ -145,6 +140,36 @@ app.get("/", function(req, res) {
 });
 //calling on auth.js to run logic for /training route
 app.use(routes);
+
+// This is the route used to retrieve the videos
+app.get("/api/retrieve", function(req, res) {
+  console.log('in server, /retrieve');
+  Video.find({})
+  .exec(function(err, docs) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    }
+    else {
+      console.log('in api/retrieve - docs',docs);
+      res.send(docs);
+    }
+  });
+});
+
+// This is the route used to post new videos
+app.post("/api/saveVid", function(req, res) {
+  console.log('in server, /saveVid: ', req.body);
+  var newVideo = new Video(req.body.video);
+  console.log("newArticle", newVideo)
+  newVideo.save(function (err, doc) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(doc);
+    }
+  });
+});
 
 app.get('/logout', function(req, res){
   req.logout();
