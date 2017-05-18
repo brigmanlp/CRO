@@ -19,13 +19,6 @@ var VideoSchema = mongoose.Schema({
 
 var Video = module.exports = mongoose.model('Video', VideoSchema);
 
-module.exports.createVideo = function(newVideo, callback){
-	        newVideo.save(callback);
-}
-module.exports.getVideos = function(callback){
-	var query = {};
-	Video.find(query, callback);
-}
 // module.exports.getVideoByVideoname = function(Videoname, callback){
 // 	var query = {Videoname: Videoname};
 // 	Video.findOne(query, callback);

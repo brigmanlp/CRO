@@ -29,7 +29,7 @@ var Video = require('./models/video');
 var routes = require('./routes/auth');
 var users = require('./routes/users');
 var verify = require('./routes/verify');
-var videos = require('./routes/videos');
+// var videos = require('./routes/videos');
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -141,7 +141,7 @@ app.get("/", function(req, res) {
 //calling on auth.js to run logic for /training route
 app.use(routes);
 
-// This is the route used to retrieve the saved articles and place them in the Saved Article Panel
+// This is the route used to retrieve the videos
 app.get("/api/retrieve", function(req, res) {
   console.log('in server, /retrieve');
   Video.find({})
@@ -153,6 +153,20 @@ app.get("/api/retrieve", function(req, res) {
     else {
       console.log('in api/retrieve - docs',docs);
       res.send(docs);
+    }
+  });
+});
+
+// This is the route used to post new videos
+app.post("/api/saveVid", function(req, res) {
+  console.log('in server, /saveVid: ', req.body);
+  var newVideo = new Video(req.body.video);
+  console.log("newArticle", newVideo)
+  newVideo.save(function (err, doc) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(doc);
     }
   });
 });
