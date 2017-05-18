@@ -9,32 +9,30 @@ var Saved = React.createClass({
     var title = selectedParent.firstChild.innerHTML;
     this.props.deleteItem(title);
     selectedParent.parentNode.removeChild(selectedParent);
+    window.reload();
   },
 
   render: function() {
     return (
       <div className="row">
-        <div className="col-md-12">
-          <div className="panel panel-default text-center">
+          <div className="text-center">
             <div className="panel-heading">
-              <h3>Saved Articles</h3>
+              <h3>Saved Videos</h3>
             </div>
 
             <div className="panel-body text-center">
-              {/* use a map function to loop through an array in JSX building a div for each article saved*/}
-              {this.props.saved.map(function(article, i) {
+              {/* use a map function to loop through an array in JSX building a div for each video saved*/}
+              {this.props.saved.map(function(video, i) {
                 return (
                   <div id={i} key={i} className="well text-left">
-                    <h4>{article.title}</h4>
-                    <a href={article.url} target="blank">{article.url}</a>
-                    <h5>{article.date.slice(0,10)}</h5>
+                    
+                    <a href={video.url} target="_blank"><h4>{video.title}</h4></a>
                     <button onClick={this.handleDelete} className="btn btn-danger btn-sm">Delete</button>
                   </div>
                 );
               }, this)}
             </div>
           </div>
-        </div>
       </div>
     );
   }
