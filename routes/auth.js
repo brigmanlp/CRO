@@ -1,13 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js')
+var Video = require('../models/video.js')
 
 // Get Homepage
 router.get('/training', ensureAuthenticated, function(req, res){
 	console.log("Admin: " + req.session.isAdmin);
 	console.log("Auth: " + req.session.isAuth);
 	console.log("Verified: " + req.session.isVerified);
-	res.render('auth');
+	Video.getVideos((err, docs)=>{
+		if(err) {console.log(err)};
+		var videos = docs;
+		console.log(videos);
+		res.render('auth', {videos: videos});
+	});
 });
 
 function ensureAuthenticated(req, res, next){
@@ -20,12 +26,16 @@ function ensureAuthenticated(req, res, next){
 	}
 }
 router.get('/admin', ensureAdmin, function(req, res){
+
 	User.getUsersByVerify((err, docs)=>{
 		if (err) {console.log(err)};
 		var newUsers = docs;
-		console.log(newUsers);
-		res.render('verify', {newUsers: newUsers, id: newUsers.id});
+		res.render('admin', {newUsers: newUsers});
 	});
+	// User.getMemberList((err, docs)=>{
+	// 	if (err){console.log(err)};
+	// 	memberList = docs;
+	// });
 });
 
 router.post('/verify/:id', function(req, res){

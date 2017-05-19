@@ -347,9 +347,11 @@ header .intro-text .intro-heading {
 }
 
 section#NCSRAR {
-  width: 80%;
-  padding: 100px 0;
-  margin: 0px 100px 0px 100px;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    padding: 100px 0;
+    display:inline;
+    margin: 0 auto;
 }
 
 div#refDiv {
@@ -358,10 +360,13 @@ height: 10px !important;
 }
 
 section#NCYSRR {
-  width: 80%;
-  padding: 100px 0;
-  margin: 0px 100px 0px 100px;
+font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    padding: 100px 0;
+    display:inline;
+    margin: 0 auto;
 }
+
 
 section {
   padding: 100px 0;
