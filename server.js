@@ -119,7 +119,7 @@ var dbURI = 'mongodb://localhost/cro';
 
 if (process.env.NODE_ENV === 'production') {
   //need to add mLab URI here
-  dbURI= "mongodb://heroku_xfj05g0m:ujk02k8p0qu0mjd9id7bbf9k45@ds141098.mlab.com:41098/heroku_xfj05g0m";
+  dbURI= "mongodb://heroku_1nsqw360:38k098dr9i05o90cv0u0cu6k9f@ds149481.mlab.com:49481/heroku_1nsqw360";
 }
 /*
 if (process.env.MONGODB_URI) {
